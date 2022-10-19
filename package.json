@@ -1,0 +1,19 @@
+{
+  "name": "dinky-games",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nkpe/dinky-games.git"
+  },
+  "author": "Naomi Pearse",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nkpe/dinky-games/issues"
+  },
+  "homepage": "https://github.com/nkpe/dinky-games#readme"
+}
