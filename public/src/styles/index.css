@@ -20,10 +20,24 @@ header h1 {
   font-family: "Silkscreen", cursive;
 }
 
+footer {
+  width: 100%;
+  background-color: palegoldenrod;
+}
+
 #maze-section {
   display: flex;
   justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-wrap: wrap;
   width: 100%;
+}
+#maze-section h1 {
+  width: 100%;
+}
+#maze-section #maze-canvas {
+  background: red;
 }
 
 /*# sourceMappingURL=index.css.map */
