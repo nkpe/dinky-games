@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":["index.sass","maze-game.sass"],"names":[],"mappings":"AAEA;EACI;EACA;EACA;EACA;EACA;;;AAIJ;EACI;EACA;EACA;EACA;EACA;EACA;;AACA;EACI;EACA;EACA,aArBO;;;AAwBf;EACI;EACA;;;ACxBJ;EACI;EACA;EACA;EACA;EACA;EACA;;AAEA;EACI;;AAEJ;EACI","file":"index.css"}
+{"version":3,"sourceRoot":"","sources":["index.sass","maze-game.sass"],"names":[],"mappings":"AAIA;EACI,aAJQ;EAKR;EACA;EACA;;;AAEJ;EACI;EACA;EACA;EACA;EACA;;AAEA;EACI,aAhBM;;;ACAd;EACI;EACA;EACA;EACA;EACA;EACA;;AAEA;EACI","file":"index.css"}

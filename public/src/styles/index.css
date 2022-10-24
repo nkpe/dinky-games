@@ -1,28 +1,19 @@
 body {
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
   font-family: "Barlow", sans-serif;
+  display: block;
+  padding: 0;
+  margin: 0;
 }
 
 header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   width: 100%;
-  height: 50px;
-  background-color: pink;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: pink;
 }
 header h1 {
-  padding: 0;
-  margin: 0;
   font-family: "Silkscreen", cursive;
-}
-
-footer {
-  width: 100%;
-  background-color: palegoldenrod;
 }
 
 #maze-section {
@@ -35,9 +26,6 @@ footer {
 }
 #maze-section h1 {
   width: 100%;
-}
-#maze-section #maze-canvas {
-  background: red;
 }
 
 /*# sourceMappingURL=index.css.map */
