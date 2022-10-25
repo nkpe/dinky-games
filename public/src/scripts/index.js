@@ -1,0 +1,1 @@
+import { mazeGame } from "./maze-game/maze";

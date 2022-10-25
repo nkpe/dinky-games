@@ -135,10 +135,12 @@ let mazeDraw = () => {
         } else {
             aBoundary = false;
         };
+        if (arr1[i][j].includes("F")){
+            setInterval(() => {alert("Congratulations")} , 500);
+        }
     };
 
     window.addEventListener('keydown', (e) => {
-        console.log(e)
         switch (e.key) {
             case "w":
             case "ArrowUp":
@@ -163,15 +165,19 @@ let mazeDraw = () => {
                 break;
         };
 
+        let keyPressCall = () => {
+            userCircleClear();
+            userCircleCreate();
+            userCoinLocation(mazeLayout);
+        }
+
         if (keys.w.pressed && lastKey === "w" && wBoundary === false) {
             lastCoin();
             if (yCircle > 20 && yCircle <= 380) {
                 yCircle = yCircle - 40
             };
             console.log("yCircle", yCircle);
-            userCircleClear();
-            userCircleCreate();
-            userCoinLocation(mazeLayout);
+            keyPressCall();
 
         } else if (keys.d.pressed && lastKey === "d" && dBoundary === false) {
            lastCoin();
@@ -179,27 +185,21 @@ let mazeDraw = () => {
                 xCircle = xCircle + 40;
             };
             console.log("xCircle", xCircle);
-            userCircleClear();
-            userCircleCreate();
-            userCoinLocation(mazeLayout);
+            keyPressCall();
 
         } else if (keys.s.pressed && lastKey === "s" && sBoundary === false) {
            lastCoin();
             if (yCircle >= 20 && yCircle < 380) {
                 yCircle = yCircle + 40;
             };
-            userCircleClear()
-            userCircleCreate();
-            userCoinLocation(mazeLayout);
+            keyPressCall();
 
         } else if (keys.a.pressed && lastKey === "a" && aBoundary === false) {
             lastCoin();
             if (xCircle > 20 && xCircle <= 380) { 
                 xCircle = xCircle - 40;
             };
-            userCircleClear();
-            userCircleCreate();
-            userCoinLocation(mazeLayout);
+            keyPressCall();
         };
     });
 
@@ -250,7 +250,7 @@ let mazeDraw = () => {
     userCoinLocation(mazeLayout);
 };
 
-const MazeGame = () => {
+const mazeGame = () => {
     let mazeGameBoard = `<div id="maze-board-wrapper">` +
         `<canvas id="maze-canvas">` +
         `</canvas>` +
@@ -260,10 +260,12 @@ const MazeGame = () => {
         mazeGameBoard +
         "</section>";
     main.innerHTML = mazeSection;
+
+    mazeDraw();
 };
 
-MazeGame();
-mazeDraw();
+export {mazeGame};
+
 
 
 
