@@ -3,87 +3,80 @@
 console.log("js file working");
 
 import { mazeLayout } from './maze-array.js';
-
-let main = document.getElementById("main");
-let mazeImage = "src/imgs/maze-map.png";
+const main = document.getElementById("main");
+const mazeImage = "src/imgs/maze-map.png";
 let canvas = document.getElementById("maze-canvas");
 
-let mazeGameBoard = `<div id="maze-board-wrapper">` +
-    `<canvas id="maze-canvas">` +
-    `</canvas>` +
-    `</div>`;
-
 let mazeDraw = () => {
+    // Canvas 
     canvas = document.getElementById("maze-canvas");
-    let c = canvas.getContext("2d");
+    let ctx = canvas.getContext("2d");
     let cHeight = canvas.height = 400;
     let cWidth = canvas.width = 400;
+    ctx.fillStyle = "pink";
+    ctx.rect(0, 0, canvas.width, canvas.height);
+
+    //Grid inside maze
     let gridHeight = cHeight / 10;
     let gridWidth = cWidth / 10;
-    c.fillStyle = "white";
-    // c.strokeStyle = "black";
-    c.rect(0, 0, canvas.width, canvas.height);
-    
+
     //User 'coin'
     let xCircle = 20;
     let yCircle = 380;
+    let rCircle = gridHeight / 4;
 
-    //User key input
-    const input = () => {
-        
-    }
+    let prevXCircle;
+    let prevYCircle;
 
 
     let mazeLayoutFunction = (arr1) => {
-        c.strokeStyle = "black";
+        ctx.strokeStyle = "black";
         arr1 = arr1.reverse();
         for (let i = 0; i < arr1.length; i++) {
             let row = i;
             let y = row * 40;
             let arr2 = arr1[i];
-            console.log("arr2", arr2)
             //Checking maze boundaries in maze array
             for (let j = 0; j < arr2.length; j++) {
                 let rectSection = () => {
                     // small squares 40x40
                     let x = j * 40;
-                    // c.fillStyle = "green";
+
                     //create square spaces in maze
-                    c.fillRect(x, y, gridWidth, gridHeight);
+                    ctx.fillRect(x, y, gridWidth, gridHeight);
                     let arr3 = arr2[j];
-                    console.log(arr3);
 
                     // Draw & Set Maze boundaries                    
                     if (arr3.includes("T")) {
-                        c.beginPath();
-                        c.moveTo(x, y);
-                        c.lineTo(x + gridWidth, y);
-                        c.stroke();
-                        console.log(i, j, "contains T");
+                        ctx.beginPath();
+                        ctx.moveTo(x, y);
+                        ctx.lineTo(x + gridWidth, y);
+                        ctx.stroke();
+                        // console.log(i, j, "contains T");
                     };
 
                     if (arr3.includes("R")) {
-                        c.beginPath();
-                        c.moveTo(x + gridWidth, y);
-                        c.lineTo(x + gridWidth, y + gridHeight);
-                        c.stroke();
-                        console.log(i, j, "contains R");
+                        ctx.beginPath();
+                        ctx.moveTo(x + gridWidth, y);
+                        ctx.lineTo(x + gridWidth, y + gridHeight);
+                        ctx.stroke();
+                        // console.log(i, j, "contains R");
                     };
 
                     if (arr3.includes("B")) {
-                        c.beginPath();
-                        c.moveTo(x, y + gridHeight);
-                        c.lineTo(x + gridWidth, y + gridHeight);
-                        c.stroke();
-                        console.log(i, j, "contains B");
+                        ctx.beginPath();
+                        ctx.moveTo(x, y + gridHeight);
+                        ctx.lineTo(x + gridWidth, y + gridHeight);
+                        ctx.stroke();
+                        // console.log(i, j, "contains B");
                     };
 
                     if (arr3.includes("L")) {
-                        c.beginPath();
-                        c.moveTo(x, y);
-                        c.lineTo(x, y + gridHeight);
-                        c.stroke();
-                        console.log(i, j, "contains L");
+                        ctx.beginPath();
+                        ctx.moveTo(x, y);
+                        ctx.lineTo(x, y + gridHeight);
+                        ctx.stroke();
+                        // console.log(i, j, "contains L");
                     };
                 };
                 rectSection();
@@ -92,20 +85,116 @@ let mazeDraw = () => {
         }
     };
 
+    //User key input
+    const keys = {
+        w: {
+            pressed: false
+        },
+        a: {
+            pressed: false
+        },
+        d: {
+            pressed: false
+        },
+        s: {
+            pressed: false
+        }
+    }
+
+    let lastKey = "";
+
+
+
+
+    window.addEventListener('keydown', (e) => {
+        switch (e.key) {
+            case "w":
+                keys.w.pressed = true;
+                lastKey = "w";
+                console.log("w down");
+                break;
+            case "d":
+                keys.d.pressed = true;
+                lastKey = "d";
+                break;
+            case "s":
+                keys.s.pressed = true;
+                lastKey = "s";
+                break;
+            case "a":
+                keys.a.pressed = true;
+                lastKey = "a";
+                break;
+        };
+
+        if (keys.w.pressed && lastKey === "w") {
+
+            if (yCircle > 20 && yCircle <= 380) {
+                yCircle = yCircle - 40
+            };
+            console.log("yCircle", yCircle);
+            userCircle();
+
+        } else if (keys.d.pressed && lastKey === "d") {
+            if (xCircle >= 20 && xCircle < 380) {
+                xCircle = xCircle + 40;
+            };
+            console.log("xCircle", xCircle);
+            userCircle();
+        } else if (keys.s.pressed && lastKey === "s") {
+            if (yCircle >= 20 && yCircle < 380) {
+                yCircle = yCircle + 40;
+            };
+            userCircle();
+
+        } else if (keys.a.pressed && lastKey === "a") {
+            if (xCircle > 20 && xCircle <= 380) {
+                xCircle = xCircle - 40;
+            };
+            userCircle();
+        };
+    });
+
+    window.addEventListener('keyup', (e) => {
+        switch (e.key) {
+            case "w":
+                keys.w.pressed = false;
+                console.log("w up")
+                break;
+            case "d":
+                keys.d.pressed = false;
+                break;
+            case "s":
+                keys.s.pressed = false;
+                break;
+            case "a":
+                keys.a.pressed = false;
+                break;
+        }
+    });
+
     mazeLayoutFunction(mazeLayout);
+
     //Maze navigation by user input
-    let userCircle = () => {
-        c.beginPath();
-        c.fillStyle = "green";
-        c.arc(xCircle, yCircle, 10, 0, 2 * Math.PI);
-        c.fill();
+    const userCircle = () => {
+        ctx.clearRect(prevXCircle, prevYCircle, gridHeight, gridWidth);
+        ctx.beginPath();
+        ctx.fillStyle = "green";
+        ctx.arc(xCircle, yCircle, rCircle, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.closePath();
+        // requestAnimationFrame(userCircle);
+        console.log("user circle y ", yCircle, "prev circle y", prevYCircle + 40)
     };
 
     userCircle();
 };
 
-
-let MazeGame = () => {
+const MazeGame = () => {
+    let mazeGameBoard = `<div id="maze-board-wrapper">` +
+        `<canvas id="maze-canvas">` +
+        `</canvas>` +
+        `</div>`;
     let mazeSection = "<section id='maze-section'>" +
         "<h1>Escape the Maze</h1>" +
         mazeGameBoard +
