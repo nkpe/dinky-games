@@ -4,7 +4,6 @@ console.log("js file working");
 
 import { mazeLayout } from './maze-array.js';
 const main = document.getElementById("main");
-const mazeImage = "src/imgs/maze-map.png";
 let canvas = document.getElementById("maze-canvas");
 
 let mazeDraw = () => {
@@ -31,12 +30,12 @@ let mazeDraw = () => {
 
     let mazeLayoutFunction = (arr1) => {
         ctx.strokeStyle = "black";
-        arr1 = arr1.reverse();
         for (let i = 0; i < arr1.length; i++) {
             let row = i;
             let y = row * 40;
             let arr2 = arr1[i];
-            //Checking maze boundaries in maze array
+
+            //Creating maze boundaries in maze array
             for (let j = 0; j < arr2.length; j++) {
                 let rectSection = () => {
                     // small squares 40x40
@@ -103,31 +102,68 @@ let mazeDraw = () => {
 
     let lastKey = "";
 
+    let wBoundary = false;
+    let dBoundary = false;
+    let sBoundary = false;
+    let aBoundary = false;
 
+    let userCoinLocation = (arr1) => {
+        let i = Math.trunc(yCircle / gridHeight);
+        let j = Math.trunc(xCircle / gridWidth);
+        console.log("arr1[i][j] "+i+" "+j, arr1[i][j]);
 
+        if(arr1[i][j].includes("T")){
+            wBoundary = true;
+        } else {
+            wBoundary = false;
+        };
+
+        if(arr1[i][j].includes("R")){
+            dBoundary = true;
+        } else {
+            dBoundary = false;
+        };
+
+        if(arr1[i][j].includes("B")){
+            sBoundary = true;
+        } else {
+            sBoundary= false;
+        };
+
+        if(arr1[i][j].includes("L")){
+            aBoundary = true;
+        } else {
+            aBoundary = false;
+        };
+    };
 
     window.addEventListener('keydown', (e) => {
+        console.log(e)
         switch (e.key) {
             case "w":
+            case "ArrowUp":
                 keys.w.pressed = true;
                 lastKey = "w";
                 console.log("w down");
                 break;
             case "d":
+            case "ArrowRight":
                 keys.d.pressed = true;
                 lastKey = "d";
                 break;
             case "s":
+            case "ArrowDown":
                 keys.s.pressed = true;
                 lastKey = "s";
                 break;
             case "a":
+            case "ArrowLeft":
                 keys.a.pressed = true;
                 lastKey = "a";
                 break;
         };
 
-        if (keys.w.pressed && lastKey === "w") {
+        if (keys.w.pressed && lastKey === "w" && wBoundary === false) {
             lastCoin();
             if (yCircle > 20 && yCircle <= 380) {
                 yCircle = yCircle - 40
@@ -135,8 +171,9 @@ let mazeDraw = () => {
             console.log("yCircle", yCircle);
             userCircleClear();
             userCircleCreate();
+            userCoinLocation(mazeLayout);
 
-        } else if (keys.d.pressed && lastKey === "d") {
+        } else if (keys.d.pressed && lastKey === "d" && dBoundary === false) {
            lastCoin();
             if (xCircle >= 20 && xCircle < 380) {
                 xCircle = xCircle + 40;
@@ -144,21 +181,25 @@ let mazeDraw = () => {
             console.log("xCircle", xCircle);
             userCircleClear();
             userCircleCreate();
-        } else if (keys.s.pressed && lastKey === "s") {
+            userCoinLocation(mazeLayout);
+
+        } else if (keys.s.pressed && lastKey === "s" && sBoundary === false) {
            lastCoin();
             if (yCircle >= 20 && yCircle < 380) {
                 yCircle = yCircle + 40;
             };
             userCircleClear()
             userCircleCreate();
+            userCoinLocation(mazeLayout);
 
-        } else if (keys.a.pressed && lastKey === "a") {
+        } else if (keys.a.pressed && lastKey === "a" && aBoundary === false) {
             lastCoin();
             if (xCircle > 20 && xCircle <= 380) { 
                 xCircle = xCircle - 40;
             };
             userCircleClear();
             userCircleCreate();
+            userCoinLocation(mazeLayout);
         };
     });
 
@@ -193,6 +234,7 @@ let mazeDraw = () => {
         ctx.clearRect(prevXCircle - 10, prevYCircle - 10, 20, 20);
         console.log("clearRect " + "x " +  prevXCircle + " y " + prevYCircle)
     };
+
     //Maze navigation by user input
     const userCircleCreate = () => {
         ctx.beginPath();
@@ -205,6 +247,7 @@ let mazeDraw = () => {
     };
 
     userCircleCreate();
+    userCoinLocation(mazeLayout);
 };
 
 const MazeGame = () => {
