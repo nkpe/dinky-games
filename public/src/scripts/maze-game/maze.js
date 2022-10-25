@@ -13,7 +13,7 @@ let mazeDraw = () => {
     let ctx = canvas.getContext("2d");
     let cHeight = canvas.height = 400;
     let cWidth = canvas.width = 400;
-    ctx.fillStyle = "pink";
+    ctx.fillStyle = "white";
     ctx.rect(0, 0, canvas.width, canvas.height);
 
     //Grid inside maze
@@ -25,8 +25,8 @@ let mazeDraw = () => {
     let yCircle = 380;
     let rCircle = gridHeight / 4;
 
-    let prevXCircle;
-    let prevYCircle;
+    let prevXCircle = xCircle;
+    let prevYCircle = yCircle;
 
 
     let mazeLayoutFunction = (arr1) => {
@@ -128,30 +128,37 @@ let mazeDraw = () => {
         };
 
         if (keys.w.pressed && lastKey === "w") {
-
+            lastCoin();
             if (yCircle > 20 && yCircle <= 380) {
                 yCircle = yCircle - 40
             };
             console.log("yCircle", yCircle);
-            userCircle();
+            userCircleClear();
+            userCircleCreate();
 
         } else if (keys.d.pressed && lastKey === "d") {
+           lastCoin();
             if (xCircle >= 20 && xCircle < 380) {
                 xCircle = xCircle + 40;
             };
             console.log("xCircle", xCircle);
-            userCircle();
+            userCircleClear();
+            userCircleCreate();
         } else if (keys.s.pressed && lastKey === "s") {
+           lastCoin();
             if (yCircle >= 20 && yCircle < 380) {
                 yCircle = yCircle + 40;
             };
-            userCircle();
+            userCircleClear()
+            userCircleCreate();
 
         } else if (keys.a.pressed && lastKey === "a") {
-            if (xCircle > 20 && xCircle <= 380) {
+            lastCoin();
+            if (xCircle > 20 && xCircle <= 380) { 
                 xCircle = xCircle - 40;
             };
-            userCircle();
+            userCircleClear();
+            userCircleCreate();
         };
     });
 
@@ -174,10 +181,20 @@ let mazeDraw = () => {
     });
 
     mazeLayoutFunction(mazeLayout);
+    
+    //Track last coin
+    const lastCoin = () => {
+        prevYCircle = yCircle;
+        prevXCircle = xCircle;
+    };
 
+    //Clear last user coin
+    const userCircleClear = () => {
+        ctx.clearRect(prevXCircle - 10, prevYCircle - 10, 20, 20);
+        console.log("clearRect " + "x " +  prevXCircle + " y " + prevYCircle)
+    };
     //Maze navigation by user input
-    const userCircle = () => {
-        ctx.clearRect(prevXCircle, prevYCircle, gridHeight, gridWidth);
+    const userCircleCreate = () => {
         ctx.beginPath();
         ctx.fillStyle = "green";
         ctx.arc(xCircle, yCircle, rCircle, 0, 2 * Math.PI);
@@ -187,7 +204,7 @@ let mazeDraw = () => {
         console.log("user circle y ", yCircle, "prev circle y", prevYCircle + 40)
     };
 
-    userCircle();
+    userCircleCreate();
 };
 
 const MazeGame = () => {
