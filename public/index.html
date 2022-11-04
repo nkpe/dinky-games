@@ -10,20 +10,35 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@200;300;400;500&family=Silkscreen&display=swap"
         rel="stylesheet">
+    <link rel="icon" href="favicon_logo.ico" />
     <link rel="stylesheet" href="src/styles/index.css" />
 </head>
 
 <body>
     <header>
-        <nav>///</nav>
-        <h1>Dinky-Games</h1>
+        <nav>
+            <ul>
+                <li>
+                    <a id="nav-maze" href="#maze">Maze</a>
+                </li>
+                <li>
+                    <a id="mav-solitare" href="#solitare">Solitare</a>
+                </li>
+            </ul>
+        </nav>
+        <a href="#home">
+            <img src="src/imgs/attributes/Dinky Games Logo.png" />
+            <h1>Dinky-Games</h1>
+        </a>
     </header>
+
     <main id="main"></main>
     <footer>
         <p>&copy Naomi Pearse</p>
     </footer>
 </body>
 <!-- <script src="src/scripts/index.js"></script> -->
+<script type="module" src="src/scripts/index.js"></script>
 <script type="module" src="src/scripts/maze-game/maze.js"></script>
 
 </html>

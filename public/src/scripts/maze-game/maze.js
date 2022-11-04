@@ -1,17 +1,16 @@
 'use strict';
 
-console.log("js file working");
-
 import { mazeLayout } from './maze-array.js';
-const main = document.getElementById("main");
-let canvas = document.getElementById("maze-canvas");
 
-let mazeDraw = () => {
+
+
+let mazeDraw = (mazeSection) => {
     // Canvas 
-    canvas = document.getElementById("maze-canvas");
-    let ctx = canvas.getContext("2d");
-    let cHeight = canvas.height = 400;
-    let cWidth = canvas.width = 400;
+    const canvas = document.createElement("canvas");
+    canvas.setAttribute("id", "maze-canvas");
+    const ctx = canvas.getContext("2d");
+    const cHeight = canvas.height = 400;
+    const cWidth = canvas.width = 400;
     ctx.fillStyle = "white";
     ctx.rect(0, 0, canvas.width, canvas.height);
 
@@ -26,7 +25,6 @@ let mazeDraw = () => {
 
     let prevXCircle = xCircle;
     let prevYCircle = yCircle;
-
 
     let mazeLayoutFunction = (arr1) => {
         ctx.strokeStyle = "black";
@@ -51,7 +49,6 @@ let mazeDraw = () => {
                         ctx.moveTo(x, y);
                         ctx.lineTo(x + gridWidth, y);
                         ctx.stroke();
-                        // console.log(i, j, "contains T");
                     };
 
                     if (arr3.includes("R")) {
@@ -59,7 +56,6 @@ let mazeDraw = () => {
                         ctx.moveTo(x + gridWidth, y);
                         ctx.lineTo(x + gridWidth, y + gridHeight);
                         ctx.stroke();
-                        // console.log(i, j, "contains R");
                     };
 
                     if (arr3.includes("B")) {
@@ -67,7 +63,6 @@ let mazeDraw = () => {
                         ctx.moveTo(x, y + gridHeight);
                         ctx.lineTo(x + gridWidth, y + gridHeight);
                         ctx.stroke();
-                        // console.log(i, j, "contains B");
                     };
 
                     if (arr3.includes("L")) {
@@ -75,7 +70,6 @@ let mazeDraw = () => {
                         ctx.moveTo(x, y);
                         ctx.lineTo(x, y + gridHeight);
                         ctx.stroke();
-                        // console.log(i, j, "contains L");
                     };
                 };
                 rectSection();
@@ -110,33 +104,32 @@ let mazeDraw = () => {
     let userCoinLocation = (arr1) => {
         let i = Math.trunc(yCircle / gridHeight);
         let j = Math.trunc(xCircle / gridWidth);
-        console.log("arr1[i][j] "+i+" "+j, arr1[i][j]);
 
-        if(arr1[i][j].includes("T")){
+        if (arr1[i][j].includes("T")) {
             wBoundary = true;
         } else {
             wBoundary = false;
         };
 
-        if(arr1[i][j].includes("R")){
+        if (arr1[i][j].includes("R")) {
             dBoundary = true;
         } else {
             dBoundary = false;
         };
 
-        if(arr1[i][j].includes("B")){
+        if (arr1[i][j].includes("B")) {
             sBoundary = true;
         } else {
-            sBoundary= false;
+            sBoundary = false;
         };
 
-        if(arr1[i][j].includes("L")){
+        if (arr1[i][j].includes("L")) {
             aBoundary = true;
         } else {
             aBoundary = false;
         };
-        if (arr1[i][j].includes("F")){
-            setInterval(() => {alert("Congratulations")} , 500);
+        if (arr1[i][j].includes("F")) {
+            setInterval(() => { alert("Congratulations") }, 500);
         }
     };
 
@@ -146,7 +139,6 @@ let mazeDraw = () => {
             case "ArrowUp":
                 keys.w.pressed = true;
                 lastKey = "w";
-                console.log("w down");
                 break;
             case "d":
             case "ArrowRight":
@@ -176,19 +168,17 @@ let mazeDraw = () => {
             if (yCircle > 20 && yCircle <= 380) {
                 yCircle = yCircle - 40
             };
-            console.log("yCircle", yCircle);
             keyPressCall();
 
         } else if (keys.d.pressed && lastKey === "d" && dBoundary === false) {
-           lastCoin();
+            lastCoin();
             if (xCircle >= 20 && xCircle < 380) {
                 xCircle = xCircle + 40;
             };
-            console.log("xCircle", xCircle);
             keyPressCall();
 
         } else if (keys.s.pressed && lastKey === "s" && sBoundary === false) {
-           lastCoin();
+            lastCoin();
             if (yCircle >= 20 && yCircle < 380) {
                 yCircle = yCircle + 40;
             };
@@ -196,7 +186,7 @@ let mazeDraw = () => {
 
         } else if (keys.a.pressed && lastKey === "a" && aBoundary === false) {
             lastCoin();
-            if (xCircle > 20 && xCircle <= 380) { 
+            if (xCircle > 20 && xCircle <= 380) {
                 xCircle = xCircle - 40;
             };
             keyPressCall();
@@ -207,7 +197,6 @@ let mazeDraw = () => {
         switch (e.key) {
             case "w":
                 keys.w.pressed = false;
-                console.log("w up")
                 break;
             case "d":
                 keys.d.pressed = false;
@@ -222,7 +211,7 @@ let mazeDraw = () => {
     });
 
     mazeLayoutFunction(mazeLayout);
-    
+
     //Track last coin
     const lastCoin = () => {
         prevYCircle = yCircle;
@@ -232,7 +221,6 @@ let mazeDraw = () => {
     //Clear last user coin
     const userCircleClear = () => {
         ctx.clearRect(prevXCircle - 10, prevYCircle - 10, 20, 20);
-        console.log("clearRect " + "x " +  prevXCircle + " y " + prevYCircle)
     };
 
     //Maze navigation by user input
@@ -242,31 +230,22 @@ let mazeDraw = () => {
         ctx.arc(xCircle, yCircle, rCircle, 0, 2 * Math.PI);
         ctx.fill();
         ctx.closePath();
-        // requestAnimationFrame(userCircle);
-        console.log("user circle y ", yCircle, "prev circle y", prevYCircle + 40)
     };
 
     userCircleCreate();
     userCoinLocation(mazeLayout);
+
+    mazeSection.appendChild(canvas);
 };
 
-const mazeGame = () => {
-    let mazeGameBoard = `<div id="maze-board-wrapper">` +
-        `<canvas id="maze-canvas">` +
-        `</canvas>` +
-        `</div>`;
-    let mazeSection = "<section id='maze-section'>" +
-        "<h1>Escape the Maze</h1>" +
-        mazeGameBoard +
-        "</section>";
-    main.innerHTML = mazeSection;
-
-    mazeDraw();
+const mazeGame = (main) => {
+    const mazeSection = document.createElement("section");
+    mazeDraw(mazeSection);
+    mazeSection.setAttribute("id", "maze-section");
+    main.appendChild(mazeSection);
+    const mazeHeading = document.createElement("h2");
+    mazeHeading.innerText = "Dinky Maze";
+    mazeSection.prepend(mazeHeading);
 };
 
-export {mazeGame};
-
-
-
-
-console.dir(canvas)
+export { mazeGame };

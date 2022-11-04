@@ -2,6 +2,11 @@
 $body-font: 'Barlow', sans-serif
 $header-font: 'Silkscreen', cursive
 
+@mixin flex-box($justify: center, $align: center)
+    display: flex
+    align-items: $align
+    justify-content: $justify
+
 body
     font-family: $body-font
     display: block
@@ -9,11 +14,28 @@ body
     margin: 0
 
 header 
+    @include flex-box($justify: space-between)
     width: 100%
-    display: flex
-    justify-content: space-between
-    align-items: center
+    height: 5rem
     background: pink
 
-    h1 
-        font-family: $header-font
+    nav
+        @include flex-box($justify: flex-start)
+        width: 50%
+        
+        ul li 
+            display: inline-block
+
+    a 
+        @include flex-box
+        height: 100%
+        
+        h1 
+            font-family: $header-font
+            margin: 0
+
+        img
+            height: 2rem
+            width: auto
+
+    

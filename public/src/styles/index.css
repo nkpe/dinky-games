@@ -6,14 +6,35 @@ body {
 }
 
 header {
-  width: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 5rem;
   background: pink;
 }
-header h1 {
+header nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 50%;
+}
+header nav ul li {
+  display: inline-block;
+}
+header a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+header a h1 {
   font-family: "Silkscreen", cursive;
+  margin: 0;
+}
+header a img {
+  height: 2rem;
+  width: auto;
 }
 
 #maze-section {
@@ -24,7 +45,7 @@ header h1 {
   flex-wrap: wrap;
   width: 100%;
 }
-#maze-section h1 {
+#maze-section h2 {
   width: 100%;
 }
 
