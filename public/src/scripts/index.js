@@ -1,7 +1,9 @@
 'use strict';
 console.log("index.js working");
 
-import { mazeGame } from "./maze-game/maze.js";
+import { mazeGame } from "./components/maze-game/maze.js";
+
+import HomePage  from "./components/home-page/home-page.js";
 
 const main = document.getElementById("main");
 
@@ -18,6 +20,7 @@ const hashRouting = () => {
             mazeGame(main);
         } else if (location.hash = "#home"){
             hideAllSections();
+            HomePage();
         };
         console.log("navEvents working")
     ;
@@ -32,3 +35,5 @@ window.addEventListener('load', () => {
     }
     hashRouting();
 });
+
+export {main};
