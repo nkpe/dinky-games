@@ -3,7 +3,7 @@ console.log("index.js working");
 
 import { mazeGame } from "./components/maze-game/MazeGame.js";
 
-import HomePage  from "./components/home-page/home-page.js";
+import HomePage  from "./components/home-page/HomePage.js";
 
 const main = document.getElementById("main");
 

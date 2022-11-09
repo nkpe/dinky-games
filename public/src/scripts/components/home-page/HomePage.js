@@ -1,7 +1,7 @@
 'use strict';
 
 import {main} from '../../index.js';
-const mazeImg = '/src/imgs/maze/maze-overview.png';
+const mazeImg = '/src/imgs/maze/maze-thumbnail.png';
 const mazeCaption = 'Dinky Maze';
 
 const HomeContentWrapper = (caption, imgSrc, section) => {

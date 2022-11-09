@@ -1,0 +1,12 @@
+@mixin flex-box($justify: center, $align: center)
+    display: flex
+    align-items: $align
+    justify-content: $justify
+    
+    
+@mixin border ($thickness: 1px, $radius: 5px)
+    border: solid $thickness darkgrey
+    border-radius: $radius
+
+@mixin border-shadow($offsetX: 11px, $offsetY: 5px, $blur: 0px)
+    box-shadow:$offsetX $offsetY $blur black
