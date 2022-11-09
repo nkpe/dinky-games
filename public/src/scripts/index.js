@@ -10,7 +10,7 @@ const main = document.getElementById("main");
 const hideAllSections = () => {
     const allSections = document.getElementsByTagName("section");
     for (let section of allSections) {
-        section.style.display = "none";
+        section.remove();
     };
 };
 
