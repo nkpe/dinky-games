@@ -1,7 +1,7 @@
 'use strict';
 console.log("index.js working");
 
-import { mazeGame } from "./components/maze-game/maze.js";
+import { mazeGame } from "./components/maze-game/MazeGame.js";
 
 import HomePage  from "./components/home-page/home-page.js";
 

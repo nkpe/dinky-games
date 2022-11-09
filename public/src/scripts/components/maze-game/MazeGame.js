@@ -1,6 +1,6 @@
 'use strict';
 
-import { mazeLayout } from './maze-array.js';
+import { mazeLayout } from '../../../data/maze-array.js';
 
 
 

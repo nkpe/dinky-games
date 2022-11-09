@@ -1,3 +1,30 @@
+#home-page {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+#home-page .home-wrapper figure {
+  display: flex;
+  flex-direction: column;
+  border: solid 1px darkgrey;
+  border-radius: 5px;
+  box-shadow: 11px 5px 0px;
+  margin: 0px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+#maze-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+#maze-section h2 {
+  width: 100%;
+}
+
 body {
   font-family: "Barlow", sans-serif;
   display: block;
@@ -35,18 +62,6 @@ header a h1 {
 header a img {
   height: 2rem;
   width: auto;
-}
-
-#maze-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  flex-wrap: wrap;
-  width: 100%;
-}
-#maze-section h2 {
-  width: 100%;
 }
 
 /*# sourceMappingURL=index.css.map */
