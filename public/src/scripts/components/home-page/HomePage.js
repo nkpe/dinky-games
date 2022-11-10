@@ -1,6 +1,5 @@
 'use strict';
 
-import {main} from '../../index.js';
 const mazeImg = '/src/imgs/maze/maze-thumbnail.png';
 const mazeCaption = 'Dinky Maze';
 
@@ -22,7 +21,7 @@ const HomeContentWrapper = (caption, imgSrc, section) => {
 };
 
 
-const HomePage = () => {
+const HomePage = (main) => {
     const section = document.createElement('section');
     section.id = 'home-page';
     main.appendChild(section);

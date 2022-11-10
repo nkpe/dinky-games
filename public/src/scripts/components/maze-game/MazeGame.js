@@ -238,7 +238,7 @@ let mazeDraw = (mazeSection) => {
     mazeSection.appendChild(canvas);
 };
 
-const mazeGame = (main) => {
+const MazeGame = (main) => {
     const mazeSection = document.createElement("section");
     mazeDraw(mazeSection);
     mazeSection.setAttribute("id", "maze-section");
@@ -248,4 +248,4 @@ const mazeGame = (main) => {
     mazeSection.prepend(mazeHeading);
 };
 
-export { mazeGame };
+export default MazeGame ;
