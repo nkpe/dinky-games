@@ -5,14 +5,21 @@
 // 
 
 
-
-const createGrid = () => {
-    console.log("createGrid working");
-
+const createSquares = (outer, squareID, layout) => {
     const square = document.createElement('div');
-    square.style.height = "400px";
-    square.style.width = "400px";
+    square.id = `${squareID}`;
+    square.className = 'square';
+    square.style.height = `${layout.height / layout.rows}px`;
+    square.style.width = `${layout.width / layout.columns}px`;
     square.style.backgroundColor = "purple";
+    outer.appendChild(square)
 }
+
+const createGrid = (outer, layout)=> {
+    console.log("createGrid working");
+    for ( let i=0; i<100; i++){
+        createSquares(outer, i, layout);
+    };
+};
 
 export {createGrid};

@@ -26,6 +26,15 @@
   width: 100%;
 }
 
+#word-search-outer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+#word-search-outer .square {
+  display: block;
+}
+
 body {
   font-family: "Barlow", sans-serif;
   display: block;
