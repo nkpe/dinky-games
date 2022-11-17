@@ -1,9 +1,28 @@
 'use strict';
 
+import {animals} from '../../../data/wordsearch-data.js';
+
+//variables to store user selection later on 
+let wordsArray = animals;
+let numOfWords = 5;
+
+//letter logic 
+const randomWords = (words) => {
+    const shuffler = (words) => {
+        return words.sort(() => Math.random() - 0.5);
+    };
+
+    let shuffled = shuffler(wordsArray);
+
+    let selectedWords = shuffled.slice(0, numOfWords);
+    return selectedWords;
+}
+
+randomWords(wordsArray);
+
+
 // Create grid square
 // duplicate grid square X times across and Y times down
-// 
-
 
 const createSquares = (outer, squareID, layout) => {
     const square = document.createElement('div');

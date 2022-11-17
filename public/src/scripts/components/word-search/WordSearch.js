@@ -10,10 +10,12 @@ const layout = {
 }
 
 const WordSearch = (main) => {
+    //create page section
     const section = document.createElement('section');
     section.id = "word-search-page";
     main.appendChild(section);
 
+     
     const wordSearchOuter = document.createElement('div');
     wordSearchOuter.id = "word-search-outer";
     wordSearchOuter.style.height = `${layout.height}px`;

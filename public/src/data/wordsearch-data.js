@@ -100,3 +100,5 @@ const animals = [
         "snake",
         "peacock"
 ]
+
+export { animals }

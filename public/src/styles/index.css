@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   column-gap: 10px;
+  background-color: pink;
 }
 #home-page .home-wrapper figure {
   display: flex;
