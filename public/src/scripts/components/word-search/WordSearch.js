@@ -1,13 +1,7 @@
 'use strict';
 
-import {createGrid} from './WordSearchGrid.js'
+import {layout, createGrid} from './WordSearchGrid.js'
 
-const layout = {
-    height: 400,
-    width: 400,
-    rows: 10,
-    columns: 10
-}
 
 const WordSearch = (main) => {
     //create page section
